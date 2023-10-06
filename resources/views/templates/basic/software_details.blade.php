@@ -619,9 +619,22 @@ dd(decide_resize($size,$max))
                                             <div class="widget custom-widget mb-30">
                                                 <h3 class="widget-title">@lang('SHORT DETAILS')</h3>
                                                 <ul class="details-list">
-                                                    <li><span>@lang('Product Price')</span>
+                                                    <li>
+                                                        <form action="{{ url('product-price-update', $software->id)}}" method="post">
+                                                            @csrf
+                                                            <div class="row">
+                                                                <span>@lang('Product Price')</span>
+                                                               <div class="col-8">
+                                                                {{ $code['currency'] }}<input style="width: 60%; height: 35px;" name="price" class="form-control" value="{{ getAmount($software->amount * $code['rate']) }}"/>
+                                                                </div>  
+                                                                <div class="col-4">
+
+                                                                    <button class="btn btn-sm btn-sucess btn--base w-10">Update</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
                                                         <span>
-                                                            {{ $code['currency'] }}{{ getAmount($software->amount * $code['rate']) }}
+                                                            
                                                         </span>
                                                     </li>
                                                 </ul>

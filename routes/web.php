@@ -703,6 +703,7 @@ Route::name('user.')->group(function () {
             Route::get('product/coupon/apply', 'SoftwareBuyController@applyCouponSoftware')->name('software.coupon.apply');
             Route::post('product/buy/store', 'SoftwareBuyController@softwareBuyStore')->name('software.buy.store');
             Route::post('product/buy/real', 'SoftwareBuyController@softwareBuyRealProduct')->name('software.buy.real');
+            Route::post('product-price-update/{id}', 'SoftwareBuyController@updateProductPrice');
 
             // Job Biding
             Route::get('job/biding/order/{slug}/{id}', 'BidingOrderController@jobBiding')->name('job.biding.order');

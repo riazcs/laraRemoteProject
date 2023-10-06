@@ -507,10 +507,21 @@ class SoftwareBuyController extends Controller
         $transaction->trx = $order_number;
         $transaction->details = "Payment for " . $order_number;
         $transaction->save();
-      
+
 
 
         $notify[] = ["success", "payment when delivery"];
         return redirect()->route('user.home')->withNotify($notify);
+    }
+
+    public function updateProductPrice($id)
+    {
+        $software = Software::findOrFail($id);
+        if ($software) {
+            $deposit = Deposit::where('user_id', auth()->user()->id)->first();
+            $deposit->update(['profit' => request()->price - $software->amount]);
+            $software->update(['amount' => request()->price]);
+        }
+        return back();
     }
 }
