@@ -11,6 +11,7 @@ class Software extends Model
 
     const UPDATED_AT = null;
 
+    protected $fillable = ['amount'];
     protected $casts = [
         'tag' => 'object',
         'file_include' => 'object'
@@ -28,13 +29,13 @@ class Software extends Model
 
     public function category()
     {
-    	return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(Category::class, 'category_id');
     }
 
 
     public function subCategory()
     {
-    	return $this->belongsTo(SubCategory::class, 'sub_category_id');
+        return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
 
     public function optionalImage()
@@ -50,7 +51,7 @@ class Software extends Model
 
     public function productType()
     {
-        return $this->belongsTo(ProductType::class,'product_type');
+        return $this->belongsTo(ProductType::class, 'product_type');
     }
 
     public function verities()

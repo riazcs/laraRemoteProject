@@ -351,6 +351,33 @@
                 }
         });   
     });
+
+    $('#product_type').on('change', function(){
+        var category = $(this).val();
+        console.log(category);
+            $.ajax({
+                type:"GET",
+                url:"{{route('user.category')}}",
+                data: {category : category},
+                success:function(data){
+                    var html = '';
+                    if(data.error){
+                        $("#subCategorys").empty(); 
+                        html += `<option value="" selected disabled>${data.error}</option>`;
+                        $(".mySubCatgry").html(html);
+                    }
+                    else{
+                        $("#subCategorys").empty(); 
+                        html += `<option value="" selected disabled>@lang('Select Sub Category')</option>`;
+                        $.each(data, function(index, item) {
+                            html += `<option value="${item.id}">${item.name}</option>`;
+                            $(".mySubCatgry").html(html);
+                        });
+                    }
+                }
+        });   
+    });
+
     $(".conditional-div").css("display", "block");
     $("#product_code_div").css("display", "block");
     $("#screenshot_title").text("Pictures and Media");
